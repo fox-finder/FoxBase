@@ -49,11 +49,11 @@ export interface FileActionResult {
 export declare class FileProvider {
   constructor(options: any);
   // dir
-  listDir(path: string, keyword: string): Promise<IFile[]>;
   readDir(path: string): Promise<IDirectoryState>;
   makeDir(path: string): Promise<FileActionResult>;
   // file
   readFile(path: string): Promise<Buffer>;
+  listFile(path: string, keyword?: string): Promise<IFile[]>;
   writeFile(path: string, data: Buffer): Promise<FileActionResult>;
   // general
   copy(srcPath: string, destPath: string): Promise<FileActionResult>;

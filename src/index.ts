@@ -1,2 +1,2 @@
-export * from './interfaces/file';
-export * from './utils/file';
+export * from './interfaces';
+export * from './utils';

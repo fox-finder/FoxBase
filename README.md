@@ -1,45 +1,38 @@
 
 # FoxBase
 
-Base modules for @fox-finder
+Base modules for [@fox-finder](https://github.com/fox-finder)
 
-## how to use
+## Usage
 
-### install
 ```bash
-npm i @fox-finder/base
+yarn add @fox-finder/base
 ```
 
-### require
 ```typescript
-import { Client, rest } from '@fox-finder/base'
+import MyFsService from 'my-fs-service';
+import { IFile, FileProvider, utils } from '@fox-finder/base'
 
-const client: Client = new Client({ /* config */ })
+export class MyFileProvider implements FileProvider {
 
-// connect
-client.connect().then(() => {
+  constructor(options) {
+    this.myFsService = new MyFsService(options)
+  }
 
-  // methods
-  client.getFiles('/path').then((data: IFile[]) => {
-    console.log('files:', data)
-  })
+  listFile(path: string, keyword?: string): Promise<IFile[]> {
+    return new Promise((resolve, reject) => {
+      return this.myFsService.getFileList(path, fileList => {
+        resolve(fileList.map(file => ({
+          // ...
+        })))
+      })
+    });
+  }
 
-  client.deleteFiles(['/path/file1', '/path/file2']).then((data: any) => {
-    console.log('result:', data)
-  })
-
-  // more methods...
-
-  // exec
-  client.exec('ls').then((data: string) => {
-    console.log('exec result:', data)
-  })
-
-  // destroy
-  client.destroy()
-})
+  // other methods...
+}
 ```
 
-## 依赖的项目
+## Acknowledgements
 
-- ssh2
+- [unix-permissions](https://github.com/ehmicky/unix-permissions)
