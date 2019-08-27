@@ -1,0 +1,33 @@
+{
+  "name": "@fox-finder/base",
+  "version": "0.1.0",
+  "description": "Base modules for @fox-finder",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon",
+    "build": "NODE_ENV=production tsc",
+    "lint": "tslint -p tsconfig.json -c tslint.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fox-finder/FoxBase.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fox-finder/FoxBase/issues"
+  },
+  "homepage": "https://github.com/fox-finder/FoxBase#readme",
+  "dependencies": {
+    "typescript": "^3.5.3",
+    "unix-permissions": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/shelljs": "^0.8.5",
+    "nodemon": "^1.19.1",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "tsconfig-paths": "^3.8.0",
+    "tslint": "5.18.0"
+  }
+}
