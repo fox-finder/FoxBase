@@ -32,8 +32,9 @@ export interface IFile<T extends IFileExtra = IFileExtra> {
   extra?: T;
 }
 
-export interface IDirectoryState<T extends IFileExtra = IFileExtra> extends IFile<T> {
-  fileCount: number;
+export interface IFileStat<T extends IFileExtra = IFileExtra> extends IFile<T> {
+  file_count?: number;
+  directory_count?: number;
 }
 
 export enum FileActionStatus {
@@ -46,20 +47,20 @@ export interface FileActionResult {
   info?: string;
 }
 
-export declare class FileProvider {
-  constructor(options: any);
+export declare class FileProvider<T = any> {
+  constructor(options: T);
   // dir
-  readDir(path: string): Promise<IDirectoryState>;
-  makeDir(path: string): Promise<FileActionResult>;
+  makeDir(path: string, octalMode?: number): Promise<FileActionResult>;
   // file
   readFile(path: string): Promise<Buffer>;
   listFile(path: string, keyword?: string): Promise<IFile[]>;
-  writeFile(path: string, data: Buffer): Promise<FileActionResult>;
+  writeFile(path: string, data: Buffer, octalMode?: number): Promise<FileActionResult>;
   // general
+  stat(path: string): Promise<IFileStat>;
   copy(srcPath: string, destPath: string): Promise<FileActionResult>;
   move(srcPath: string, destPath: string): Promise<FileActionResult>;
   rename(srcPath: string, destPath: string): Promise<FileActionResult>;
   remove(path: string): Promise<FileActionResult>;
   // unix
-  chmod?(path: string, mode: string): Promise<FileActionResult>;
+  chmod?(path: string, octalMode?: number): Promise<FileActionResult>;
 }
