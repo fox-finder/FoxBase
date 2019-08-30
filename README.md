@@ -11,9 +11,9 @@ yarn add @fox-finder/base
 
 ```typescript
 import MyFsService from 'my-fs-service';
-import { IFile, FileProvider, utils } from '@fox-finder/base'
+import { IFile, FoxFileProvider } from '@fox-finder/base'
 
-export class MyFileProvider implements FileProvider {
+export class MyFileProvider implements FoxFileProvider {
 
   constructor(options) {
     this.myFsService = new MyFsService(options)
