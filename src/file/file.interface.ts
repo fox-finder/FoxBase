@@ -19,14 +19,18 @@ export interface IFile<T extends IFileExtra = IFileExtra> {
   create_at?: number;
   readable: boolean;
   writeable: boolean;
-  unix_mode_stat?: string; // unix file mode stat string format, like: 'r----x--x'
-  unix_mode_octal?: string; // unix file mode octal string format, like: '0777'
-  uid?: string; // unix file uid
-  gid?: string; // unix file gid
+  unix?: {
+    mode_stat?: string; // unix file mode stat string format, like: 'r----x--x'
+    mode_octal?: string; // unix file mode octal string format, like: '0777'
+    uid?: string; // unix file uid
+    gid?: string; // unix file gid
+  };
   extra?: T;
 }
 
 export interface IFileStat<T extends IFileExtra = IFileExtra> extends IFile<T> {
+  // may be md5
+  total_size?: number;
   file_count?: number;
   directory_count?: number;
 }
